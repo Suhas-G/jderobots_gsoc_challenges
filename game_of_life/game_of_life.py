@@ -12,6 +12,7 @@ CELL_WIDTH = config.get('CELL_WIDTH', 3)
 CELL_HEIGHT = config.get('CELL_HEIGHT', 1)
 NUM_OF_ROWS = config.get('NUM_OF_ROWS', 10)
 NUM_OF_COLS = config.get('NUM_OF_COLS', 10)
+UPDATE_INTERVAL = config.get('UPDATE_INTERVAL', 1000)
 
 
 class ApplicationUI():
@@ -68,7 +69,7 @@ class ApplicationUI():
 
         # Call update again after a delay of 1 second, if game is still going on.
         if not self.game.life_over():
-            self.updater_id = self.content.after(1000, self.update)
+            self.updater_id = self.content.after(UPDATE_INTERVAL, self.update)
         else:
             self.started = False
 
@@ -82,7 +83,7 @@ class ApplicationUI():
         '''Callback for Start button. Start the game animation.
         '''
         self.started = True
-        self.updater_id = self.content.after(1000, self.update)
+        self.updater_id = self.content.after(UPDATE_INTERVAL, self.update)
 
     def stop(self):
         '''Callback for Stop button. Stop the game animation and reset everything
